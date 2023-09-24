@@ -1,0 +1,73 @@
+<div mat-dialog-title>
+    <h1>{{ data.editMode ? 'Edit Existing Policy' : 'Add New Policy'}}</h1>
+</div>
+<form [formGroup]="policyForm" (ngSubmit) = "OnFormSubmit()">
+<div mat-dialog-content class="content">
+   <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>PolicyCode</mat-label>
+        <input matInput type="text" placeholder="Ex- AB678" formControlName = "policyCode" [readonly] = "data.editMode">
+        <mat-error *ngIf="policyForm.get('policyCode')?.hasError('required')">PolicyCode is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Date of Purchase </mat-label>
+        <input matInput [matDatepicker]="picker" formControlName = "purchaseDate">
+        <mat-error *ngIf="policyForm.get('purchaseDate')?.hasError('required')">Date of Purchase is required</mat-error>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+   </div>
+   <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Fuel</mat-label>
+        <input matInput type="text" placeholder="Ex- Diesel" formControlName = "fuel">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Vehicle Group</mat-label>
+        <mat-select formControlName = "vehicleSegment">
+          <mat-option *ngFor="let val of Vehiclegroup" [value]="val">
+            {{val}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="policyForm.get('vehicleSegment')?.hasError('required')">Vehicle Group is required</mat-error>
+      </mat-form-field>
+   </div>
+   <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Premium</mat-label>
+        <input matInput type="number" step="0.01" placeholder="Ex- 100" formControlName = "premium">
+        <mat-error *ngIf="policyForm.get('premium')?.hasError('required')">Premium is required</mat-error>
+        <mat-error *ngIf="policyForm.get('premium')?.hasError('max')">Premium cannot exceed 10000</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Bodily Injury Coverage</mat-label>
+        <input matInput type="number" step="0.01" placeholder="Ex- 100" formControlName = "bodily_injury_liability">
+      </mat-form-field>
+   </div>
+   <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Personal Injury Coverage</mat-label>
+        <input matInput type="number" step="0.01" placeholder="Ex- 100" formControlName = "personal_injury_protection">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Propert Damage Coverage</mat-label>
+        <input matInput type="number" step="0.01" placeholder="Ex- 100" formControlName = "property_damage_liability">
+      </mat-form-field>
+   </div>
+   <div class="row">
+    <mat-form-field appearance="outline">
+        <mat-label>Collision</mat-label>
+        <input matInput type="number" step="0.01" placeholder="Ex- 100" formControlName = "collision">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Comprehensive</mat-label>
+        <input matInput type="number" step="0.01" placeholder="Ex- 100" formControlName = "comprehensive">
+      </mat-form-field>
+   </div>
+</div>
+<div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close] = "false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">{{data.editMode ? 'Update' : 'Save'}}</button>
+</div>
+</form>

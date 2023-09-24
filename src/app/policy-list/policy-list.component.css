@@ -1,0 +1,18 @@
+
+  .main-body{
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 1548px;
+  }
+  .button-container {
+    padding-bottom: 30px;
+    float: right;
+}
+  .main-body mat-form-field{
+    width: 100%;
+  }
+  .action{
+    display: flex;
+    gap: 5px;
+  }
+  

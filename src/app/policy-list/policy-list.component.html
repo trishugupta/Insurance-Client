@@ -1,0 +1,93 @@
+
+  <div class="main-body">
+    <div class="button-container">
+    <button mat-raised-button color="primary" (click) = "openaddpolicyform()"> + ADD POLICY</button>
+    </div>
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup) ="applyFilter($event)" placeholder="Ex - ABDT" #input>
+    </mat-form-field>
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+    
+        <!-- policyCode Column -->
+        <ng-container matColumnDef="policyCode">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Policy No </th>
+          <td mat-cell *matCellDef="let row"> {{row.policyCode}} </td>
+        </ng-container>
+    
+        <!-- purchaseDate Column -->
+        <ng-container matColumnDef="purchaseDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Purchase </th>
+          <td mat-cell *matCellDef="let row"> {{row.purchaseDate | date}} </td>
+        </ng-container>
+    
+        <!-- Fuel Column -->
+        <ng-container matColumnDef="fuel">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fuel </th>
+          <td mat-cell *matCellDef="let row"> {{row.fuel}} </td>
+        </ng-container>
+    
+        <!-- Vehicle Column -->
+        <ng-container matColumnDef="vehicleSegment">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle Group </th>
+          <td mat-cell *matCellDef="let row"> {{row.vehicleSegment}} </td>
+        </ng-container>
+  
+        <!-- premium Column -->
+        <ng-container matColumnDef="premium">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Premium </th>
+          <td mat-cell *matCellDef="let row"> {{row.premium}} </td>
+        </ng-container>
+  
+        <!-- Bodily Injury Coverage Column -->
+        <ng-container matColumnDef="bodily_injury_liability">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Bodily Injury Coverage </th>
+          <td mat-cell *matCellDef="let row"> {{row.bodily_injury_liability}} </td>
+        </ng-container>
+  
+        <!-- Personal Coverage Column -->
+        <ng-container matColumnDef="personal_injury_protection">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Personal Coverage </th>
+          <td mat-cell *matCellDef="let row"> {{row.personal_injury_protection}} </td>
+        </ng-container>
+  
+        <!-- Property Coverage Column -->
+        <ng-container matColumnDef="property_damage_liability">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Property Coverage </th>
+          <td mat-cell *matCellDef="let row"> {{row.property_damage_liability}} </td>
+        </ng-container>
+  
+        <!-- Collision Column -->
+        <ng-container matColumnDef="collision">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Collision </th>
+          <td mat-cell *matCellDef="let row"> {{row.collision}} </td>
+        </ng-container>
+  
+        <!-- Comprehensive Column -->
+        <ng-container matColumnDef="comprehensive">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Comprehensive </th>
+          <td mat-cell *matCellDef="let row"> {{row.comprehensive}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let row">
+              <button mat-icon-button color="primary" (click) = "openEditpolicyform(row)">
+                  <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="openDeletepolicyform(row.policyCode)">
+                  <mat-icon>delete</mat-icon>
+              </button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                     aria-label="Select page of Policies">
+      </mat-paginator>
+    </div>
+  </div>

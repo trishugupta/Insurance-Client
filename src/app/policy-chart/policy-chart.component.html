@@ -1,0 +1,27 @@
+
+   <div class="main-body">
+    <div class="row"> 
+     <mat-form-field appearance="outline">
+        <mat-label>Region</mat-label>
+        <mat-select (selectionChange)="onRegionChange($event)">
+          <mat-option *ngFor="let val of Region" [value]="val">
+            {{val}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  </div>
+
+
+  <div class="chart-container">
+    <h1 class="title">Bar Chart</h1>
+    <div class="chart-wrapper">
+<canvas baseChart
+type="bar"
+[datasets]="barChartData"
+[labels]="barChartLabels"
+[options]="barChartOptions">
+</canvas>
+    </div>
+
+  </div>
